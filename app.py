@@ -1,12 +1,40 @@
 import streamlit as st
+import pandas as pd
 
-# Title for your web app
-st.title("👋 My First Streamlit App")
+# --- Page Title ---
+st.title("🎉 My Second Streamlit App")
+st.write("This app shows how to collect user inputs and display results interactively.")
 
-# Create a text input box
+# --- User Inputs ---
+st.header("👤 Enter Your Details")
+
 name = st.text_input("Enter your name:")
+age = st.number_input("Enter your age:", min_value=1, max_value=120)
+color = st.selectbox("Pick your favorite color:", ["Red", "Green", "Blue", "Yellow", "Purple"])
 
-# Create a button
-if st.button("Submit"):
-    # When the button is clicked, show this message
-    st.success(f"Hello, {name}! Welcome to Streamlit 🎉")
+# --- Display Results ---
+if st.button("Show My Info"):
+    st.success(f"Hi **{name}**, you are **{age}** years old and your favorite color is **{color}** 🎨")
+
+    # Add some conditional logic
+    if age < 18:
+        st.warning("⚠️ You are still a minor.")
+    elif 18 <= age < 60:
+        st.info("💪 You are an adult — keep learning and exploring!")
+    else:
+        st.success("🎯 You are wise and experienced!")
+
+# --- CSV Upload Section ---
+st.header("📂 Upload a CSV File")
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.subheader("📊 Data Preview:")
+    st.dataframe(df)
+
+    st.subheader("📈 Summary Statistics:")
+    st.write(df.describe())
+
+# --- Footer ---
+st.caption("Made with ❤️ using Streamlit")
