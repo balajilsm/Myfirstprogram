@@ -38,3 +38,10 @@ if uploaded_file is not None:
 
 # --- Footer ---
 st.caption("Made with ❤️ using Streamlit")
+
+if uploaded_file is not None:
+    st.subheader("📈 Data Chart Example")
+    column = st.selectbox("Select a numeric column to plot:", df.select_dtypes('number').columns)
+    fig, ax = plt.subplots()
+    ax.hist(df[column], bins=20)
+    st.pyplot(fig)
