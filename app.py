@@ -135,7 +135,7 @@ features = st.multiselect("Choose Features:", options=feat_suggestion, default=d
 st.markdown("---")
 c1, c2, c3 = st.columns([1,1,2])
 with c1:
-    save_draft = st.button("Save As Draft")
+    save_draft = st.button("Save")
 with c2:
     create_train = st.button("Create & Train")
 
