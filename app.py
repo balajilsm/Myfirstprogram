@@ -130,14 +130,7 @@ feat_suggestion = [c for c in cols if c != target_col]
 default_feats = [f for f in feat_suggestion[:2]]  # pick first two by default
 features = st.multiselect("Choose Features:", options=feat_suggestion, default=default_feats, help="Hold Ctrl/Cmd to select multiple")
 
-# Prediction Type
-st.markdown("##### Prediction Type")
-ss.prediction_type = st.selectbox("Prediction Type:", options=["Classification","Regression"], index=0 if ss.prediction_type=="Classification" else 1)
 
-# Algorithm picker depends on prediction type
-st.markdown("##### Algorithm")
-algo_pool = CLASSIFIERS if ss.prediction_type == "Classification" else REGRESSORS
-algorithms = st.multiselect("Add Algorithms:", options=algo_pool, default=algo_pool[:2])
 
 st.markdown("---")
 c1, c2, c3 = st.columns([1,1,2])
