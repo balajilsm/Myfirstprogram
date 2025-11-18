@@ -37,11 +37,14 @@ st.caption(
 # -----------------------------
 # SIDEBAR – FILE + FILTERS
 # -----------------------------
-with st.sidebar:
-    st.header("📂 Data Source")
-    uploaded_file = st.file_uploader(
-        "Upload bug dump (Excel)", type=["xlsx", "xls"]
-    )
+@st.cache_data
+def load_data(file):
+    name = file.name.lower()
+    if name.endswith(".csv"):
+        return pd.read_csv(file)
+    else:
+        # Excel – needs openpyxl installed
+        return pd.read_excel(file)
 
     st.markdown("---")
     st.subheader("🔎 Global Filters")
